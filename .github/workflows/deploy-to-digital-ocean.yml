@@ -2,7 +2,7 @@ name: Deploy Next.js to Digital Ocean
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy:
