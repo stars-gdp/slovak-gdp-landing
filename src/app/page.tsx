@@ -1,103 +1,228 @@
-import Image from "next/image";
+import React from "react";import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Globe, Clock, ShieldCheck, CheckCircle2, ArrowRight, Rocket } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-800">
+        {/* Header */}
+        <header className="sticky top-0 z-30 backdrop-blur bg-white/70 border-b border-slate-200">
+          <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-2 font-semibold text-slate-900">
+              <Rocket className="h-5 w-5" />
+              <span>Global Dropshipping</span>
+            </div>
+            <nav className="hidden md:flex items-center gap-6 text-sm">
+              <a href="#about" className="hover:text-slate-900 text-slate-600">O projekte</a>
+              <a href="#how" className="hover:text-slate-900 text-slate-600">Ako to funguje</a>
+              <a href="#eu" className="hover:text-slate-900 text-slate-600">Pravidlá v EÚ</a>
+              <a href="#req" className="hover:text-slate-900 text-slate-600">Požiadavky</a>
+              <a href="#faq" className="hover:text-slate-900 text-slate-600">FAQ</a>
+            </nav>
+            <a href="#next" className="ml-4">
+              <Button className="rounded-2xl px-5">Ďalšie kroky</Button>
+            </a>
+          </div>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900"
+              >
+                Informácie o projekte Global Dropshipping
+              </h1>
+              <p className="mt-4 text-lg text-slate-600">
+                Ďakujeme za vašu prihlášku. Tu nájdete prehľad toho, čo projekt prináša a čo si prejdeme na
+                <strong> 40‑minútovom online stretnutí</strong>. <strong>Angličtina je povinná</strong>. Produkt je
+                <strong> dostupný v Európe (od augusta 2025)</strong>. Nejde o pracovný pomer; odmena závisí od výkonu.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a href="#about"><Button size="lg" className="rounded-2xl">Zistiť viac</Button></a>
+                <a href="#next" className="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900">
+                  Ďalšie kroky <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <Feature icon={<Globe className="h-5 w-5" />} title="Produkt v EÚ" subtitle="Dostupný od 08/2025" />
+                <Feature icon={<Clock className="h-5 w-5" />} title="40 min call" subtitle="stručne a vecne" />
+                <Feature icon={<ShieldCheck className="h-5 w-5" />} title="Transparentné" subtitle="nie je to zamestnanie" />
+              </div>
+            </div>
+
+            <Card className="rounded-2xl shadow-xl border-slate-200" id="about">
+              <CardHeader>
+                <CardTitle>Čo je Global Dropshipping</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-slate-700">
+                <p>
+                  Global dropshipping je <strong>e‑commerce model</strong>, v ktorom sa produkty predávajú online a tovar
+                  odosiela <strong>priamo dodávateľ</strong> zákazníkovi. Partner sa sústredí na marketing, výber sortimentu,
+                  komunikáciu so zákazníkom a správu objednávok; sklad a logistiku rieši dodávateľ.
+                </p>
+                <ul className="list-disc pl-5 space-y-2 text-sm">
+                  <li>Žiadny vlastný sklad; objednávky sa odosielajú dodávateľovi na expedíciu.</li>
+                  <li>Margin vzniká rozdielom medzi nákupnou a predajnou cenou.</li>
+                  <li>Dôraz na <strong>kvalitu dodávateľov</strong>, časy doručenia a popredajný servis.</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section id="how" className="py-16 md:py-20 bg-slate-50 border-y">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-2xl md:text-3xl font-bold">Ako to funguje (proces)</h2>
+            <div className="mt-8 grid md:grid-cols-4 gap-4">
+              <Step no="1" title="Výber produktov" text="Analýza dopytu, kvality a marže; validácia dodávateľov." />
+              <Step no="2" title="Zverejnenie ponuky" text="Tvorba listingu, jasná komunikácia dostupnosti a doručenia." />
+              <Step no="3" title="Objednávka a expedícia" text="Zákazník objedná; dodávateľ expeduje priamo zákazníkovi." />
+              <Step no="4" title="Podpora a vrátenia" text="Riešenie dotazov, vrátení a reklamácií podľa práva EÚ." />
+            </div>
+
+            <div className="mt-8 grid md:grid-cols-3 gap-6">
+              <Benefit title="Vaša úloha" text="Marketing a získavanie objednávok, komunikácia so zákazníkmi, dohľad nad kvalitou a transparentné informácie o doručení." />
+              <Benefit title="Dodávateľ" text="Drží sklad, balí a odosiela; zdieľa tracking a informácie o zásielke." />
+              <Benefit title="Meranie výsledkov" text="Sledujeme konverzie, refund rate, reklamácie a čas doručenia." />
+            </div>
+          </div>
+        </section>
+
+        {/* EU rules */}
+        <section id="eu" className="py-16 md:py-20">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-2xl md:text-3xl font-bold">Pravidlá a štandardy v EÚ (stručne)</h2>
+            <div className="mt-6 grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+              <div className="rounded-2xl border bg-white p-5 shadow-sm">
+                <div className="font-semibold mb-2">Práva spotrebiteľov</div>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li><strong>14‑dňové právo na odstúpenie</strong> pri online nákupe tovaru.</li>
+                  <li>Jasná informácia o nákladoch na vrátenie a o procese reklamácií.</li>
+                  <li>Transparentné dodacie lehoty a pôvod tovaru.</li>
+                </ul>
+              </div>
+              <div className="rounded-2xl border bg-white p-5 shadow-sm">
+                <div className="font-semibold mb-2">DPH a režimy OSS/IOSS</div>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Predaj koncovým zákazníkom v EÚ: zvážte <strong>OSS</strong> pre deklaráciu DPH v jednom štáte.</li>
+                  <li>Dovoz zásielok do 150 € z tretích krajín: použitie <strong>IOSS</strong> na výber DPH pri pokladni.</li>
+                  <li>V SR platia pravidlá finančnej správy pre OSS/IOSS; účtovníctvo a evidencia sú povinné.</li>
+                </ul>
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-slate-500">Pozn.: Tieto body sú informatívne; konkrétne nastavenie daní a zmlúv konzultujte s účtovníkom/právnikom.</p>
+          </div>
+        </section>
+
+        {/* Requirements */}
+        <section id="req" className="py-16 md:py-20 bg-slate-50 border-y">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-2xl md:text-3xl font-bold">Požiadavky na spoluprácu</h2>
+            <ul className="mt-6 grid md:grid-cols-2 gap-3 text-slate-700">
+              <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 mt-0.5"/> Komunikatívna <strong>znalosť angličtiny</strong> (práca s dodávateľmi a podpora).</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 mt-0.5"/> Účasť na <strong>40‑min online stretnutí</strong> – detailný prehľad procesu.</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 mt-0.5"/> Transparentná komunikácia: doručenie, vrátenia, záruky.</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 mt-0.5"/> Zodpovednosť za zákaznícku skúsenosť a kvalitu ponuky.</li>
+            </ul>
+            <p className="mt-4 text-sm text-slate-500">Nejde o pracovný pomer; spolupráca je nezávislá a odmena je výsledkovo orientovaná.</p>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-16 md:py-20">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-2xl md:text-3xl font-bold">Často kladené otázky</h2>
+            <div className="mt-8 grid md:grid-cols-2 gap-6">
+              <FAQ q="Je to pracovné miesto?" a="Nie. Ide o nezávislú spoluprácu v oblasti e‑commerce; neexistuje fixný plat a príjem nie je garantovaný." />
+              <FAQ q="Je angličtina naozaj nutná?" a="Áno. Potrebná je komunikácia v angličtine (min. pracovná úroveň)." />
+              <FAQ q="Ako dlho trvá úvodné stretnutie?" a="Približne 40 minút. Povieme všetko dôležité a odpovieme na otázky." />
+              <FAQ q="Je produkt dostupný v Európe?" a="Áno, projekt funguje s produktom dostupným v EÚ od augusta 2025." />
+              <FAQ q="Ako riešite vrátenia a reklamácie?" a="Podľa práva EÚ: 14‑dňové odstúpenie, jasne uvedené náklady na vrátenie a férový proces reklamácií." />
+              <FAQ q="Čo ak dodanie trvá dlhšie?" a="Komunikujeme reálne lehoty podľa pôvodu tovaru; zákazníka informujeme o trackingu a možnostiach storna." />
+            </div>
+          </div>
+        </section>
+
+        {/* Next steps */}
+        <section id="next" className="py-16 md:py-20 bg-slate-50 border-y">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-2xl md:text-3xl font-bold">Ďalšie kroky</h2>
+            <ol className="mt-6 list-decimal pl-5 space-y-2 text-slate-700">
+              <li>Skontrolujte e‑mail/WhatsApp – pošleme potvrdenie a link na online stretnutie.</li>
+              <li>Pripravte si otázky k procesom, dodávateľom a zákazníckej podpore.</li>
+              <li>Po stretnutí dostanete podklady: checklist kvality dodávateľa, šablóny komunikácie a postupy pre vrátenia.</li>
+            </ol>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="py-10 border-t bg-white">
+          <div className="mx-auto max-w-6xl px-4 text-sm text-slate-600 grid md:grid-cols-3 gap-6">
+            <div>
+              <div className="font-semibold text-slate-900">Global Dropshipping</div>
+              <p className="mt-2">Transparentná a etická spolupráca v rámci EÚ. Bez prehnaných sľubov, s dôrazom na výsledky.</p>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Dokumenty</div>
+              <ul className="mt-2 space-y-2">
+                <li><a href="https://secure.bhipenergy.com/ClientDocs/BHIP/bHIP-PrivacyPolicy-EU-20180525.pdf" className="hover:underline">Zásady ochrany osobných údajov (GDPR)</a></li>
+                <li><a href="https://secure.bhipenergy.com/AppPoliciesProcedures.aspx?appCountry=US&docType=pnp" className="hover:underline">Podmienky spolupráce</a></li>
+              </ul>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Kontakt</div>
+              <ul className="mt-2 space-y-2">
+                <li>E‑mail: info@example.com</li>
+                <li>WhatsApp: +421 900 000 000</li>
+                <li>Messenger: @vas-profil</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-6 text-center text-xs text-slate-500">© {new Date().getFullYear()} Global Dropshipping. Všetky práva vyhradené.</div>
+        </footer>
+      </div>
+  );
+}
+
+function Feature({ icon, title, subtitle }: { icon: React.ReactNode; title: string; subtitle: string }) {
+  return (
+      <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+        <div className="rounded-xl border bg-slate-50 p-2">{icon}</div>
+        <div>
+          <div className="text-sm font-semibold">{title}</div>
+          <div className="text-xs text-slate-500">{subtitle}</div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+  );
+}
+
+function Step({ no, title, text }: { no: string; title: string; text: string }) {
+  return (
+      <div className="rounded-2xl border bg-white p-5 shadow-sm">
+        <div className="text-xs text-slate-500">Krok {no}</div>
+        <div className="mt-1 font-semibold">{title}</div>
+        <div className="mt-2 text-sm text-slate-600">{text}</div>
+      </div>
+  );
+}
+
+function Benefit({ title, text }: { title: string; text: string }) {
+  return (
+      <div className="rounded-2xl border bg-white p-5 shadow-sm">
+        <div className="font-semibold">{title}</div>
+        <div className="mt-2 text-sm text-slate-600">{text}</div>
+      </div>
+  );
+}
+
+function FAQ({ q, a }: { q: string; a: string }) {
+  return (
+      <details className="rounded-2xl border bg-white p-4 shadow-sm open:shadow-md">
+        <summary className="cursor-pointer list-none font-medium text-slate-900">{q}</summary>
+        <div className="mt-2 text-sm text-slate-600">{a}</div>
+      </details>
   );
 }
