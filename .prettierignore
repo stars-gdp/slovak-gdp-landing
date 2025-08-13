@@ -1,0 +1,17 @@
+# build output
+.next
+dist
+build
+out
+
+# deps
+node_modules
+
+# misc
+*.log
+coverage
+.turbo
+.vercel
+.netlify
+.vscode
+
