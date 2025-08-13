@@ -301,9 +301,34 @@ export default function Home() {
           <div>
             <div className="font-semibold text-slate-900">Kontakt</div>
             <ul className="mt-2 space-y-2">
-              <li>E‑mail: info@example.com</li>
-              <li>WhatsApp: +421 900 000 000</li>
-              <li>Messenger: @vas-profil</li>
+              <li>
+                <a
+                  href="mailto:ahronsilv@gmail.com"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  E-mail: ahronsilv@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/972546253106"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  WhatsApp: +972 54 625 3106
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/ahronsilv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  Telegram: @ahronsilv
+                </a>
+              </li>
             </ul>
           </div>
         </div>
