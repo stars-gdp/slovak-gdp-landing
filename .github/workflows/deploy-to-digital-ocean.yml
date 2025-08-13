@@ -1,0 +1,57 @@
+name: Deploy Next.js to Digital Ocean
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SSH_HOST: ${{ secrets.DO_SSH_HOST }}
+      SSH_USER: ${{ secrets.DO_SSH_USER }}
+      APP_DIR: /var/www/slovak-gdp-landing
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build (Next.js)
+        run: yarn build
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add host key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Ensure remote app directory
+        run: ssh "$SSH_USER@$SSH_HOST" "mkdir -p '$APP_DIR'"
+
+      - name: Rsync .next (build output)
+        run: rsync -avz --delete ./.next/ "$SSH_USER@$SSH_HOST:$APP_DIR/.next/"
+
+      - name: Rsync public assets
+        run: rsync -avz --delete ./public/ "$SSH_USER@$SSH_HOST:$APP_DIR/public/"
+
+      - name: Upload runtime files
+        run: |
+          scp ./package.json "$SSH_USER@$SSH_HOST:$APP_DIR/"
+          if [ -f yarn.lock ]; then scp ./yarn.lock "$SSH_USER@$SSH_HOST:$APP_DIR/"; fi
+          if ls next.config.* >/dev/null 2>&1; then scp next.config.* "$SSH_USER@$SSH_HOST:$APP_DIR/"; fi
+          if [ -f .nvmrc ]; then scp .nvmrc "$SSH_USER@$SSH_HOST:$APP_DIR/"; fi
+          if [ -f ecosystem.config.cjs ]; then scp ecosystem.config.cjs "$SSH
